@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-private',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './private.component.html',
   styleUrl: './private.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,7 +12,12 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class PrivateComponent {
   authService = inject(AuthService);
 
-  logOut($event: MouseEvent) {
+  constructor() {
+    console.log('PRIVATE AREA');
+    
+  }
+
+  logOut() {
     this.authService.logout();
   }
 }

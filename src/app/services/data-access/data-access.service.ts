@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, take, tap } from 'rxjs';
+import { Observable, of, take } from 'rxjs';
 import { LoginResponse, User } from 'src/app/models';
 
 @Injectable({
@@ -46,11 +46,6 @@ export class DataAccessService {
   requestUser(jwt: string): Observable<User | null> {
     const user = this.userTokenMap.get(jwt) || null;
 
-    return of(user).pipe(
-      take(1),
-      tap(() => {
-        console.log('User: ', user);
-      })
-    );
+    return of(user);
   }
 }

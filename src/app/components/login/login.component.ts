@@ -15,6 +15,10 @@ export class LoginComponent {
   username = '';
   password = '';
 
+  constructor() {
+    console.log('LOGIN');
+  }
+
   onLogin(): void {
     this.authService.login(this.username, this.password).subscribe();
   }

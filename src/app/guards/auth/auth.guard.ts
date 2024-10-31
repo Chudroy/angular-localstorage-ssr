@@ -10,8 +10,6 @@ export const authGuard: CanActivateFn = (route) => {
   const injector = inject(Injector);
   const platformId = inject(PLATFORM_ID);
 
-  console.log('Auth guard started');
-
   return toObservable(authService.status, { injector }).pipe(
     skipWhile((status) => status === 'loading'),
     timeout({

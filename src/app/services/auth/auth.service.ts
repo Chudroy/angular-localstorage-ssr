@@ -1,16 +1,15 @@
-import { DataAccessService } from './../data-access/data-access.service';
-import { StorageService } from './../storage/storage.service';
 import {
-  effect,
   inject,
   Injectable,
   signal,
-  WritableSignal,
+  WritableSignal
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, EMPTY, finalize, Observable, tap } from 'rxjs';
 import { JWT_KEY } from 'src/app/constants';
 import { LoginResponse, User } from 'src/app/models';
+import { DataAccessService } from './../data-access/data-access.service';
+import { StorageService } from './../storage/storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -27,11 +26,6 @@ export class AuthService {
   user: User | null = null;
 
   constructor() {
-
-    effect(() => {
-      console.log('Auth Service status: ', this.status());
-    });
-
     this.status.set('loading');
 
     const token = this.storageService.getItem<string>(JWT_KEY);
